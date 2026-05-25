@@ -1,532 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Madisco Ventures — Investing & advisory for pre-Series A founders</title>
-<meta name="description" content="A San Francisco investment and advisory shop. We back pre-Series A founders in tech, data, AI, and food & beverage — and embed senior operators to help them scale."/>
-<meta property="og:title" content="Madisco Ventures — Pre-Series A investing & advisory, SF"/>
-<meta property="og:description" content="Madisco Ventures is a San Francisco investment and advisory shop backing pre-Series A founders in tech, data, AI, and food & beverage."/>
-<meta property="og:type" content="website"/>
-<meta name="twitter:card" content="summary"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --radius: 0.625rem;
-  --background: oklch(0.13 0.02 290);
-  --foreground: oklch(0.98 0.005 290);
-  --surface: oklch(0.18 0.03 290);
-  --card: oklch(0.18 0.03 290);
-  --primary-foreground: oklch(0.13 0.02 290);
-  --pop: oklch(0.72 0.27 305);
-  --pop-soft: oklch(0.55 0.22 295);
-  --muted-foreground: oklch(0.7 0.02 290);
-  --border: oklch(1 0 0 / 8%);
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-sans: 'Outfit', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-
-::selection { background: var(--pop); color: var(--background); }
-
-a { color: inherit; text-decoration: none; }
-
-/* Nav */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 50;
-  background: oklch(0.13 0.02 290 / 0.7);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-inner {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: -0.025em;
-}
-.logo span { color: var(--pop); }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-.nav-link {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--muted-foreground);
-  transition: color 0.15s;
-  position: relative;
-}
-.nav-link:hover { color: var(--foreground); }
-
-/* Dropdown */
-.dropdown { position: relative; }
-.dropdown-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--muted-foreground);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-sans);
-  transition: color 0.15s;
-}
-.dropdown-btn:hover { color: var(--foreground); }
-.dropdown-btn svg { width: 0.875rem; height: 0.875rem; transition: transform 0.2s; }
-.dropdown:hover .dropdown-btn svg { transform: rotate(180deg); }
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding-top: 0.5rem;
-  width: 18rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s;
-}
-.dropdown:hover .dropdown-menu { opacity: 1; pointer-events: auto; }
-.dropdown-inner {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  padding: 0.5rem;
-  box-shadow: 0 25px 50px oklch(0 0 0 / 0.4);
-}
-.dropdown-item {
-  display: block;
-  padding: 0.625rem 0.75rem;
-  border-radius: 0.5rem;
-  transition: background 0.15s;
-}
-.dropdown-item:hover { background: oklch(0.72 0.27 305 / 0.1); }
-.dropdown-item:hover .dropdown-item-title { color: var(--pop); }
-.dropdown-item-title { font-size: 0.875rem; font-weight: 600; color: var(--foreground); transition: color 0.15s; }
-.dropdown-item-desc { font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.125rem; }
-
-.btn-contact {
-  background: var(--pop);
-  color: var(--primary-foreground);
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: transform 0.15s;
-  display: inline-block;
-}
-.btn-contact:hover { transform: scale(1.03); }
-
-/* Main */
-main { padding-top: 4rem; }
-
-/* Hero */
-.hero {
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
-}
-.blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(120px);
-  animation: blob 14s ease-in-out infinite;
-}
-.blob-1 {
-  width: 24rem; height: 24rem;
-  top: -5rem; left: -5rem;
-  background: oklch(0.72 0.27 305 / 0.3);
-}
-.blob-2 {
-  width: 18rem; height: 18rem;
-  top: 2.5rem; right: 0;
-  background: oklch(0.55 0.22 295 / 0.3);
-  animation-delay: 4s;
-}
-.hero-inner {
-  position: relative;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 5rem 1.5rem 6rem;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  background: oklch(0.72 0.27 305 / 0.1);
-  border: 1px solid oklch(0.72 0.27 305 / 0.3);
-  font-size: 0.75rem;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--pop);
-  margin-bottom: 1.5rem;
-}
-.badge svg { width: 0.75rem; height: 0.75rem; }
-h1 {
-  font-family: var(--font-display);
-  font-size: clamp(1.875rem, 4vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  max-width: 48rem;
-}
-h1 .accent { color: var(--pop); }
-.pill {
-  background: oklch(0.72 0.27 305 / 0.15);
-  border-radius: 0.5rem;
-  padding: 0.125rem 0.5rem;
-}
-.sector-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-.sector-tag {
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  border: 1px solid var(--border);
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: default;
-  transition: border-color 0.15s, color 0.15s;
-}
-.sector-tag:hover { border-color: oklch(0.72 0.27 305 / 0.6); color: var(--pop); }
-
-/* Advisory */
-.section { max-width: 80rem; margin: 0 auto; padding: 6rem 1.5rem; }
-.section-label { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pop); margin-bottom: 0.5rem; }
-h2 { font-family: var(--font-display); font-size: clamp(1.875rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.025em; }
-.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
-.all-link { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; font-weight: 500; color: var(--muted-foreground); transition: color 0.15s; }
-.all-link:hover { color: var(--pop); }
-.all-link svg { width: 1rem; height: 1rem; }
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.card {
-  background: var(--background);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  min-height: 16rem;
-  transition: background 0.15s;
-  text-decoration: none;
-  color: inherit;
-}
-.card:hover { background: var(--surface); }
-.card-top { display: flex; align-items: center; justify-content: space-between; }
-.card-icon {
-  width: 2.5rem; height: 2.5rem;
-  border-radius: 0.5rem;
-  background: oklch(0.72 0.27 305 / 0.15);
-  border: 1px solid oklch(0.72 0.27 305 / 0.3);
-  display: grid;
-  place-items: center;
-  color: var(--pop);
-}
-.card-icon svg { width: 1.25rem; height: 1.25rem; }
-.card-arrow { width: 1.25rem; height: 1.25rem; color: var(--muted-foreground); transition: color 0.15s, transform 0.15s; }
-.card:hover .card-arrow { color: var(--pop); transform: translate(2px, -2px); }
-.card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
-.card p { font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; }
-.card-img { position: relative; overflow: hidden; min-height: 16rem; background: var(--background); }
-.card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
-.card-img-ring { position: absolute; inset: 0.25rem; border-radius: 0.75rem; border: 1px solid oklch(1 0 0 / 0.1); }
-
-/* Marquee */
-.marquee-section { overflow: hidden; padding: 3rem 0; border-bottom: 1px solid var(--border); }
-.marquee-track {
-  display: flex;
-  gap: 3rem;
-  white-space: nowrap;
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  animation: marquee 30s linear infinite;
-}
-.marquee-chunk { display: flex; gap: 3rem; align-items: center; flex-shrink: 0; }
-.marquee-text { color: oklch(0.98 0.005 290 / 0.1); }
-.marquee-dot { color: var(--pop); }
-
-/* CTA */
-.cta-box {
-  border-radius: 1.5rem;
-  background: linear-gradient(135deg, var(--pop), var(--pop-soft));
-  padding: 2.5rem 4rem;
-  color: var(--primary-foreground);
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-.cta-label { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 0.75rem; }
-.cta-box h2 { font-family: var(--font-display); font-size: clamp(1.875rem, 3vw, 3rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; max-width: 32rem; color: var(--primary-foreground); }
-.cta-box p { margin-top: 1rem; max-width: 28rem; opacity: 0.8; }
-.btn-hello {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--background);
-  color: var(--foreground);
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  transition: transform 0.15s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.btn-hello:hover { transform: scale(1.03); }
-.btn-hello svg { width: 1rem; height: 1rem; }
-
-/* Footer */
-footer { border-top: 1px solid var(--border); margin-top: 8rem; }
-.footer-inner { max-width: 80rem; margin: 0 auto; padding: 4rem 1.5rem; display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
-.footer-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.875rem; letter-spacing: -0.025em; }
-.footer-logo span { color: var(--pop); }
-.footer-nav-label { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pop); margin-bottom: 0.75rem; }
-.footer-nav { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; }
-.footer-nav a { transition: color 0.15s; color: inherit; }
-.footer-nav a:hover { color: var(--pop); }
-.footer-bottom { border-top: 1px solid var(--border); }
-.footer-bottom-inner { max-width: 80rem; margin: 0 auto; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
-
-/* Animations */
-@keyframes blob {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  33% { transform: translate(30px,-40px) scale(1.1); }
-  66% { transform: translate(-20px,30px) scale(0.95); }
-}
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .card-grid { grid-template-columns: 1fr; }
-  .card-img { display: none; }
-  .cta-box { padding: 2rem; flex-direction: column; align-items: flex-start; }
-  .footer-inner { grid-template-columns: 1fr; }
-  .all-link { display: none; }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madisco Ventures — Investing &amp; advisory for pre-Series A founders</title>
+  <meta name="description" content="A San Francisco investment and advisory shop. We back pre-Series A founders in tech, data, AI, and food &amp; beverage — and embed senior operators to help them scale." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="/" class="logo">Madisco<span>.</span></a>
-    <div class="nav-links">
-      <div class="dropdown">
-        <button class="dropdown-btn">
-          Portfolio
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div class="dropdown-menu">
-          <div class="dropdown-inner">
-            <a href="/portfolio" class="dropdown-item">
-              <div class="dropdown-item-title">All Holdings</div>
-              <div class="dropdown-item-desc">Pre-Series A bets across sectors</div>
-            </a>
-            <a href="/portfolio#tech" class="dropdown-item">
-              <div class="dropdown-item-title">Tech & Data</div>
-              <div class="dropdown-item-desc">Infra, AI, dev tools</div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropdown-btn">
-          Advisory
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div class="dropdown-menu">
-          <div class="dropdown-inner">
-            <a href="/advisory/technology" class="dropdown-item">
-              <div class="dropdown-item-title">Technology</div>
-              <div class="dropdown-item-desc">Cyber, architecture, AI deployment</div>
-            </a>
-            <a href="/advisory/media" class="dropdown-item">
-              <div class="dropdown-item-title">Media</div>
-              <div class="dropdown-item-desc">Media planning, programmatic, agentic</div>
-            </a>
-            <a href="/advisory/revenue" class="dropdown-item">
-              <div class="dropdown-item-title">Revenue</div>
-              <div class="dropdown-item-desc">GTM, sales eng, rev ops</div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <a href="/about" class="nav-link">About</a>
-    </div>
-    <a href="/contact" class="btn-contact">Contact</a>
-  </div>
-</nav>
+<div id="site-nav-placeholder"></div>
 
 <main>
-  <section class="hero">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-blob-1 animate-blob"></div>
+    <div class="hero-blob-2 animate-blob"></div>
     <div class="hero-inner">
-      <div class="badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
-        Fractional CRO, CISO, CTO, and GTM Revenue Systems Architecture
+      <div class="hero-badge">
+        <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        FRACTIONAL CRO, CISO, CTO, AND GTM REVENUE SYSTEMS ARCHITECTURE
       </div>
-      <h1>
+      <h1 class="hero-h1">
         We write early checks and roll up our sleeves —
-        <span class="accent"> <span class="pill">Investment</span> and <span class="pill">Advisory</span> from exited operators</span>
+        <span class="text-pop"> <span class="highlight">Investment</span> and <span class="highlight">Advisory</span> from exited operators</span>
       </h1>
-      <div class="sector-tags">
-        <span class="sector-tag">Tech</span>
-        <span class="sector-tag">Data</span>
-        <span class="sector-tag">AI</span>
-        <span class="sector-tag">Cyber</span>
-        <span class="sector-tag">GTM</span>
+      <div class="hero-tags">
+        <span class="tag">Tech</span>
+        <span class="tag">Data</span>
+        <span class="tag">AI</span>
+        <span class="tag">Cyber</span>
+        <span class="tag">GTM</span>
       </div>
     </div>
   </section>
 
-  <div class="section">
-    <div class="section-header">
+  <!-- Advisory -->
+  <section class="advisory-section">
+    <div class="advisory-header">
       <div>
-        <div class="section-label">01 — Advisory</div>
-        <h2>Operators on tap.</h2>
+        <div class="eyebrow">01 — Advisory</div>
+        <h2 class="section-title">Operators on tap.</h2>
       </div>
-      <a href="/advisory/technology" class="all-link">
+      <a href="advisory/technology.html" class="btn-ghost" style="display:none" id="all-services-link">
         All services
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
       </a>
     </div>
-    <div class="card-grid">
-      <a href="/advisory/technology" class="card">
-        <div class="card-top">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>
-          </div>
-          <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-        </div>
-        <h3>Technology</h3>
-        <p>Enterprise systems architecture, cyber security, and AI deployment that survives scale.</p>
-      </a>
-      <a href="/advisory/revenue" class="card">
-        <div class="card-top">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
-          </div>
-          <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-        </div>
-        <h3>Revenue</h3>
-        <p>GTM design, sales engineering, and revenue operations that compound.</p>
-      </a>
-      <div class="card-img">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,oklch(0.18 0.03 290),oklch(0.13 0.02 290));display:flex;align-items:center;justify-content:center;">
-          <svg style="width:4rem;height:4rem;opacity:0.15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <div class="card-img-ring"></div>
-      </div>
-    </div>
-  </div>
 
+    <div class="advisory-grid">
+      <!-- Technology -->
+      <a href="advisory/technology.html" class="advisory-card">
+        <div class="advisory-card-header">
+          <div class="advisory-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M20 15h2M2 9h2M20 9h2M9 2v2M9 20v2"/></svg>
+          </div>
+          <svg class="advisory-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </div>
+        <h3 class="advisory-card-title">Technology</h3>
+        <p class="text-sm muted" style="line-height:1.65">Enterprise systems architecture, cyber security, and AI deployment that survives scale.</p>
+      </a>
+
+      <!-- Revenue -->
+      <a href="advisory/revenue.html" class="advisory-card">
+        <div class="advisory-card-header">
+          <div class="advisory-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <svg class="advisory-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </div>
+        <h3 class="advisory-card-title">Revenue</h3>
+        <p class="text-sm muted" style="line-height:1.65">GTM design, sales engineering, and revenue operations that compound.</p>
+      </a>
+
+      <!-- Image cell -->
+      <div class="advisory-img-cell">
+        <img src="assets/business-growth.jpg" alt="Business growth" loading="lazy" width="1024" height="768" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
   <section class="marquee-section">
-    <div class="marquee-track">
-      <div class="marquee-chunk">
-        <span class="marquee-text">Pre-Series A</span>
+    <div class="marquee-track animate-marquee">
+      <div class="marquee-inner">
+        <span class="marquee-word">Pre-Series A</span>
         <span class="marquee-dot">✦</span>
-        <span class="marquee-text">Tech · Data · AI</span>
+        <span class="marquee-word">Tech · Data · AI</span>
         <span class="marquee-dot">✦</span>
-        <span class="marquee-text">Hands-on operators</span>
+        <span class="marquee-word">Hands-on operators</span>
         <span class="marquee-dot">✦</span>
       </div>
-      <div class="marquee-chunk">
-        <span class="marquee-text">Pre-Series A</span>
+      <div class="marquee-inner" aria-hidden="true">
+        <span class="marquee-word">Pre-Series A</span>
         <span class="marquee-dot">✦</span>
-        <span class="marquee-text">Tech · Data · AI</span>
+        <span class="marquee-word">Tech · Data · AI</span>
         <span class="marquee-dot">✦</span>
-        <span class="marquee-text">Hands-on operators</span>
+        <span class="marquee-word">Hands-on operators</span>
         <span class="marquee-dot">✦</span>
       </div>
     </div>
   </section>
 
-  <div class="section">
+  <!-- CTA -->
+  <section class="cta-section">
     <div class="cta-box">
       <div>
-        <div class="cta-label">03 — Get in touch</div>
-        <h2>Building something interesting?</h2>
-        <p>We read every note. Tell us about you, the team, and what you're working on.</p>
+        <div class="eyebrow" style="color:rgba(14,12,20,0.7)">03 — Get in touch</div>
+        <h2 class="cta-box-title">Building something interesting?</h2>
+        <p class="cta-box-sub">We read every note. Tell us about you, the team, and what you're working on.</p>
       </div>
-      <a href="/contact" class="btn-hello">
+      <a href="contact.html" class="cta-btn">
         Say hello
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
       </a>
     </div>
-  </div>
+  </section>
+
 </main>
 
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-logo">Madisco<span>.</span></div>
-    </div>
-    <div>
-      <div class="footer-nav-label">Explore</div>
-      <ul class="footer-nav">
-        <li><a href="/portfolio">Portfolio</a></li>
-        <li><a href="/advisory/technology">Advisory</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-bottom-inner">
-      <span>© 2026 Madisco Ventures</span>
-      <span>Made in SF</span>
-    </div>
-  </div>
-</footer>
+<div id="site-footer-placeholder"></div>
 
+<script src="nav.js"></script>
+<script>
+  // Show desktop "All services" link
+  if (window.innerWidth >= 768) {
+    document.getElementById('all-services-link').style.display = 'inline-flex';
+  }
+</script>
 </body>
 </html>

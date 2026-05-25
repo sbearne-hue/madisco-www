@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Madisco Ventures</title>
+  <meta name="description" content="Get in touch with Madisco Ventures about investment or advisory." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="site-nav-placeholder"></div>
+
+<main>
+  <section class="contact-section">
+    <div class="eyebrow">Contact</div>
+    <h1 class="section-title-xl">Tell us what you're building.</h1>
+    <p class="muted" style="margin-top:1.25rem;max-width:28rem">
+      Investment intros, advisory inquiries, or a question — we read every note.
+    </p>
+
+    <div class="contact-form">
+
+      <!-- Confirmation state (hidden by default) -->
+      <div class="form-sent" id="form-sent" style="display:none">
+        <span class="eyebrow">Sent</span>
+        <div class="form-sent-title">Thanks — we'll be in touch.</div>
+        <div class="form-sent-sub">Your email client should have opened with your message ready to send.</div>
+      </div>
+
+      <!-- Form -->
+      <form id="contact-form" novalidate>
+        <div class="form-field">
+          <label class="form-label" for="f-name">Name</label>
+          <input class="form-input" type="text" id="f-name" name="name" required autocomplete="name" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-company">Company</label>
+          <input class="form-input" type="text" id="f-company" name="company" autocomplete="organization" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-email">Email</label>
+          <input class="form-input" type="email" id="f-email" name="email" required autocomplete="email" />
+        </div>
+
+        <span class="interests-label">I am interested in</span>
+        <div class="interests-list">
+          <label class="interest-item">
+            <input type="checkbox" name="interest" value="Technology Services" />
+            <span>Technology Services</span>
+          </label>
+          <label class="interest-item">
+            <input type="checkbox" name="interest" value="AI Implementation and agentic builds" />
+            <span>AI Implementation and agentic builds</span>
+          </label>
+          <label class="interest-item">
+            <input type="checkbox" name="interest" value="GTM Revenue Consultancy" />
+            <span>GTM Revenue Consultancy</span>
+          </label>
+          <label class="interest-item">
+            <input type="checkbox" name="interest" value="I am a founder raising capital" />
+            <span>I am a founder raising capital</span>
+          </label>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-notes">Notes</label>
+          <textarea class="form-textarea" id="f-notes" name="notes" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send note</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer-placeholder"></div>
+
+<script src="nav.js"></script>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name     = document.getElementById('f-name').value.trim();
+    const company  = document.getElementById('f-company').value.trim();
+    const email    = document.getElementById('f-email').value.trim();
+    const notes    = document.getElementById('f-notes').value.trim();
+    const checked  = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(el => el.value);
+
+    const subject = 'New inquiry from ' + name + (company ? ' (' + company + ')' : '');
+    const lines = [
+      'Name: ' + name,
+      'Company: ' + company,
+      'Email: ' + email,
+      '',
+      'I am interested in:',
+      ...(checked.length ? checked.map(i => '- ' + i) : ['- (none selected)']),
+      '',
+      'Notes:',
+      notes,
+    ];
+    window.location.href = 'mailto:rachel@madisco.vc?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-sent').style.display = 'block';
+  });
+</script>
+</body>
+</html>
