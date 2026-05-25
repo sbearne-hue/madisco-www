@@ -244,8 +244,8 @@
   .hero-logo-main {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 56px;
-    letter-spacing: 8px;
+    font-size: 42px;
+    letter-spacing: 6px;
     color: var(--text-primary);
     line-height: 1;
     position: relative;
@@ -1110,7 +1110,7 @@
         I am interested in Madisco advisory services
       </label>
     </div>
-    <button class="form-submit">Send Message</button>
+    <button class="form-submit" onclick="sendMsg()">Send Message</button>
   </div>
 </section>
 
@@ -1125,6 +1125,12 @@
 </footer>
 
 <script>
+function sendMsg() {
+  const u = 'rache';
+  const d = 'madisco.vc';
+  window.location.href = 'mailto:' + u + '@' + d;
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
