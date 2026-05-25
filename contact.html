@@ -78,19 +78,36 @@
 
 <script src="nav.js"></script>
 <script>
+  // Obfuscated — assembled at runtime so crawlers can't pattern-match it
+  function _to() {
+    return atob('aW5mbw==') + '@' + atob('bWFkaXNjby52Yw==');
+  }
+
+  // Maps checkbox values to short subject tokens
+  const SUBJECT_LABELS = {
+    'Technology Services':                '[Technology]',
+    'AI Implementation and agentic builds': '[AI]',
+    'GTM Revenue Consultancy':            '[GTM]',
+    'I am a founder raising capital':     '[Investment]',
+  };
+
   document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    const name     = document.getElementById('f-name').value.trim();
-    const company  = document.getElementById('f-company').value.trim();
-    const email    = document.getElementById('f-email').value.trim();
-    const notes    = document.getElementById('f-notes').value.trim();
-    const checked  = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(el => el.value);
+    const name    = document.getElementById('f-name').value.trim();
+    const company = document.getElementById('f-company').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const notes   = document.getElementById('f-notes').value.trim();
+    const checked = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(el => el.value);
 
-    const subject = 'New inquiry from ' + name + (company ? ' (' + company + ')' : '');
+    // Build subject: tags first, then sender
+    const tags    = checked.map(v => SUBJECT_LABELS[v] || v).join(' ');
+    const sender  = name + (company ? ' (' + company + ')' : '');
+    const subject = (tags ? tags + ' ' : '') + 'Inquiry from ' + sender;
+
     const lines = [
-      'Name: ' + name,
+      'Name: '    + name,
       'Company: ' + company,
-      'Email: ' + email,
+      'Email: '   + email,
       '',
       'I am interested in:',
       ...(checked.length ? checked.map(i => '- ' + i) : ['- (none selected)']),
@@ -98,7 +115,10 @@
       'Notes:',
       notes,
     ];
-    window.location.href = 'mailto:rachel@madisco.vc?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+
+    window.location.href = 'mailto:' + _to()
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body='    + encodeURIComponent(lines.join('\n'));
 
     document.getElementById('contact-form').style.display = 'none';
     document.getElementById('form-sent').style.display = 'block';
