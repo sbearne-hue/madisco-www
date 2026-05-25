@@ -1,1152 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Madisco Ventures</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Madisco Ventures — Investing & advisory for pre-Series A founders</title>
+<meta name="description" content="A San Francisco investment and advisory shop. We back pre-Series A founders in tech, data, AI, and food & beverage — and embed senior operators to help them scale."/>
+<meta property="og:title" content="Madisco Ventures — Pre-Series A investing & advisory, SF"/>
+<meta property="og:description" content="Madisco Ventures is a San Francisco investment and advisory shop backing pre-Series A founders in tech, data, AI, and food & beverage."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --navy: #08090f;
-    --navy-mid: #0e0c1e;
-    --navy-card: #111428;
-    --navy-border: #1e2240;
-    --purple-deep: #2d1f5e;
-    --purple-mid: #4a2fa0;
-    --purple-bright: #7c5ff5;
-    --purple-light: #b89dff;
-    --purple-glow: rgba(124, 95, 245, 0.12);
-    --text-primary: #f0eeff;
-    --text-secondary: #9b8fcf;
-    --text-muted: #4e4870;
-    --accent: #c4aeff;
-    --white: #ffffff;
-    --font-display: 'Syne', sans-serif;
-    --font-editorial: 'Cormorant Garamond', serif;
-    --font-body: 'DM Sans', sans-serif;
-    --radius: 18px;
-    --radius-sm: 10px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--navy);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.7;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 50% at 15% 0%, rgba(74,47,160,0.2) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 40% at 85% 100%, rgba(45,31,94,0.22) 0%, transparent 55%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3rem;
-    height: 72px;
-    background: rgba(8,9,15,0.88);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--navy-border);
-  }
-
-  /* LOGO PILL */
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    width: 210px;
-    height: 44px;
-    border-radius: 999px;
-    background: var(--navy-mid);
-    border: 1px solid rgba(124,95,245,0.35);
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .nav-logo::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(124,95,245,0.08) 0%, transparent 60%);
-  }
-
-  .nav-logo-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .nav-logo-main {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: 4px;
-    color: var(--text-primary);
-    line-height: 1;
-    text-transform: uppercase;
-  }
-
-  .nav-logo-rule {
-    width: 80px;
-    height: 0.5px;
-    background: rgba(124,95,245,0.4);
-  }
-
-  .nav-logo-sub {
-    font-family: var(--font-body);
-    font-weight: 200;
-    font-size: 6.5px;
-    letter-spacing: 5px;
-    color: rgba(196,174,255,0.55);
-    text-transform: uppercase;
-    line-height: 1;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.72rem;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    cursor: pointer;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  .nav-links .dropdown { position: relative; }
-
-  .nav-links .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 14px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--navy-card);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius-sm);
-    padding: 0.5rem 0;
-    min-width: 270px;
-    z-index: 200;
-  }
-
-  .nav-links .dropdown:hover .dropdown-menu { display: block; }
-
-  .nav-links .dropdown-menu a {
-    display: block;
-    padding: 0.65rem 1.3rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.09em;
-    white-space: nowrap;
-    color: var(--text-secondary);
-  }
-
-  .nav-links .dropdown-menu a:hover {
-    background: var(--purple-glow);
-    color: var(--accent);
-  }
-
-  .nav-cta {
-    border: 1px solid var(--purple-mid) !important;
-    color: var(--purple-light) !important;
-    padding: 0.42rem 1.2rem;
-    border-radius: 999px;
-    transition: background 0.2s, border-color 0.2s !important;
-  }
-
-  .nav-cta:hover {
-    background: var(--purple-glow) !important;
-    border-color: var(--purple-light) !important;
-    color: var(--accent) !important;
-  }
-
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; }
-
-  /* ── HERO ── */
-  #home {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 5rem;
-  }
-
-  /* HERO LOGO LARGE */
-  .hero-logo-pill {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 460px;
-    height: 136px;
-    border-radius: 999px;
-    background: var(--navy-mid);
-    border: 1px solid rgba(124,95,245,0.4);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 3rem;
-  }
-
-  .hero-logo-pill::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(124,95,245,0.1) 0%, transparent 55%);
-  }
-
-  .hero-logo-pill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 999px;
-    border: 1px solid rgba(124,95,245,0.15);
-    transform: scale(0.94);
-  }
-
-  .hero-logo-main {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 42px;
-    letter-spacing: 6px;
-    color: var(--text-primary);
-    line-height: 1;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-logo-rule {
-    width: 220px;
-    height: 0.5px;
-    background: rgba(124,95,245,0.35);
-    margin: 8px 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-logo-sub {
-    font-family: var(--font-body);
-    font-weight: 200;
-    font-size: 9px;
-    letter-spacing: 9px;
-    color: rgba(196,174,255,0.5);
-    text-transform: uppercase;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    margin-bottom: 1.5rem;
-    opacity: 0.75;
-  }
-
-  .hero-title {
-    font-family: var(--font-editorial);
-    font-size: clamp(3rem, 6.5vw, 6rem);
-    font-weight: 300;
-    line-height: 1.05;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--purple-light);
-  }
-
-  .hero-sub {
-    font-family: var(--font-editorial);
-    font-size: clamp(1rem, 1.8vw, 1.35rem);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text-secondary);
-    max-width: 520px;
-    margin: 0 auto 3rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--purple-mid);
-    color: var(--white);
-    border: none;
-    padding: 0.85rem 2rem;
-    border-radius: 999px;
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .btn-primary:hover { background: var(--purple-bright); transform: translateY(-1px); }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--navy-border);
-    padding: 0.85rem 2rem;
-    border-radius: 999px;
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .btn-outline:hover { border-color: var(--purple-mid); color: var(--accent); }
-
-  /* ── SHARED SECTION STYLES ── */
-  .section-divider {
-    width: 40px;
-    height: 1px;
-    background: var(--purple-mid);
-    margin: 0 auto 1.8rem;
-    opacity: 0.55;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .section-eyebrow {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    margin-bottom: 1rem;
-    opacity: 0.75;
-  }
-
-  .section-title {
-    font-family: var(--font-editorial);
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--text-primary);
-  }
-
-  .section-title em {
-    font-style: italic;
-    color: var(--purple-light);
-  }
-
-  .section-body {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    max-width: 540px;
-    margin: 1.2rem auto 0;
-    line-height: 1.85;
-  }
-
-  /* ── INVESTMENTS ── */
-  #investments {
-    padding: 6rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .pillars {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .pillar-card {
-    background: var(--navy-card);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius);
-    padding: 2rem 1.75rem;
-    transition: border-color 0.25s;
-  }
-
-  .pillar-card:hover { border-color: rgba(124,95,245,0.4); }
-
-  .pillar-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: var(--purple-glow);
-    border: 1px solid rgba(124,95,245,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.2rem;
-    font-size: 1rem;
-    color: var(--purple-light);
-  }
-
-  .pillar-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
-  }
-
-  .pillar-title {
-    font-family: var(--font-editorial);
-    font-size: 1.45rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .pillar-desc {
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
-  }
-
-  /* PORTFOLIO TABLE */
-  .portfolio-table-wrap {
-    background: var(--navy-card);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-
-  .portfolio-table-header {
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid var(--navy-border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .portfolio-table-header h3 {
-    font-family: var(--font-editorial);
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--text-primary);
-  }
-
-  .portfolio-table-header span {
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  table { width: 100%; border-collapse: collapse; }
-
-  thead th {
-    padding: 0.75rem 2rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    text-align: left;
-    background: rgba(255,255,255,0.02);
-    border-bottom: 1px solid var(--navy-border);
-  }
-
-  tbody td {
-    padding: 1rem 2rem;
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    border-bottom: 1px solid rgba(30,34,64,0.6);
-    vertical-align: middle;
-  }
-
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover td { background: rgba(124,95,245,0.04); }
-
-  .company-name { color: var(--text-primary); font-weight: 500; font-size: 0.88rem; }
-
-  .sector-badge {
-    display: inline-block;
-    padding: 0.18rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.65rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    border: 1px solid var(--navy-border);
-    color: var(--text-muted);
-  }
-
-  .stage-dot {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.8rem;
-  }
-
-  .stage-dot::before {
-    content: '';
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--purple-mid);
-    flex-shrink: 0;
-  }
-
-  /* ── ADVISORY ── */
-  #advisory {
-    padding: 6rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .advisory-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .advisory-card {
-    background: var(--navy-card);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius);
-    padding: 2.25rem 2rem;
-    transition: border-color 0.25s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .advisory-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--purple-mid), transparent);
-    opacity: 0;
-    transition: opacity 0.25s;
-  }
-
-  .advisory-card:hover {
-    border-color: rgba(124,95,245,0.4);
-    transform: translateY(-2px);
-  }
-
-  .advisory-card:hover::before { opacity: 1; }
-
-  .advisory-number {
-    font-family: var(--font-editorial);
-    font-size: 3rem;
-    font-weight: 300;
-    color: rgba(124,95,245,0.16);
-    line-height: 1;
-    margin-bottom: 1.2rem;
-  }
-
-  .advisory-practice {
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    margin-bottom: 0.55rem;
-    opacity: 0.8;
-  }
-
-  .advisory-title {
-    font-family: var(--font-editorial);
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-
-  .advisory-desc {
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    line-height: 1.85;
-    margin-bottom: 1.5rem;
-  }
-
-  .advisory-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-  }
-
-  .tag {
-    font-size: 0.62rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px solid var(--navy-border);
-    padding: 0.18rem 0.55rem;
-    border-radius: 999px;
-  }
-
-  /* TEAM */
-  .team-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .team-card {
-    background: var(--navy-card);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius);
-    padding: 2rem;
-  }
-
-  .team-role {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    margin-bottom: 0.55rem;
-    opacity: 0.8;
-  }
-
-  .team-name {
-    font-family: var(--font-editorial);
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: 0.9rem;
-  }
-
-  .team-bio {
-    font-size: 0.83rem;
-    color: var(--text-secondary);
-    line-height: 1.85;
-  }
-
-  .cert-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 1rem;
-  }
-
-  .cert {
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    border: 1px solid rgba(124,95,245,0.25);
-    padding: 0.18rem 0.55rem;
-    border-radius: 999px;
-    background: var(--purple-glow);
-  }
-
-  /* ── CONTACT ── */
-  #contact {
-    padding: 6rem 2rem;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .contact-form {
-    background: var(--navy-card);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius);
-    padding: 3rem;
-    margin-top: 3rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .form-group label {
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .form-group input,
-  .form-group textarea {
-    background: rgba(255,255,255,0.035);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 0.88rem;
-    padding: 0.75rem 1rem;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--purple-mid); }
-
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--text-muted); }
-
-  .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.75rem;
-  }
-
-  .checkbox-label {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    cursor: pointer;
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .checkbox-label input[type="checkbox"] {
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--navy-border);
-    border-radius: 4px;
-    background: transparent;
-    cursor: pointer;
-    flex-shrink: 0;
-    margin-top: 2px;
-    transition: background 0.15s, border-color 0.15s;
-    position: relative;
-  }
-
-  .checkbox-label input[type="checkbox"]:checked {
-    background: var(--purple-mid);
-    border-color: var(--purple-mid);
-  }
-
-  .checkbox-label input[type="checkbox"]:checked::after {
-    content: '✓';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 10px;
-    line-height: 1;
-  }
-
-  .form-submit {
-    width: 100%;
-    padding: 1rem;
-    background: var(--purple-mid);
-    color: white;
-    border: none;
-    border-radius: 999px;
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .form-submit:hover { background: var(--purple-bright); transform: translateY(-1px); }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--navy-border);
-    padding: 2.5rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-logo-pill {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 130px;
-    height: 42px;
-    border-radius: 999px;
-    background: var(--navy-mid);
-    border: 1px solid rgba(124,95,245,0.2);
-    gap: 2px;
-  }
-
-  .footer-logo-main {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: rgba(240,238,255,0.7);
-    text-transform: uppercase;
-    line-height: 1;
-  }
-
-  .footer-logo-rule {
-    width: 50px;
-    height: 0.5px;
-    background: rgba(124,95,245,0.3);
-  }
-
-  .footer-logo-sub {
-    font-family: var(--font-body);
-    font-weight: 200;
-    font-size: 5.5px;
-    letter-spacing: 4px;
-    color: rgba(196,174,255,0.4);
-    text-transform: uppercase;
-    line-height: 1;
-  }
-
-  footer p {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-  }
-
-  /* ── ANIMATIONS ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.13 0.02 290);
+  --foreground: oklch(0.98 0.005 290);
+  --surface: oklch(0.18 0.03 290);
+  --card: oklch(0.18 0.03 290);
+  --primary-foreground: oklch(0.13 0.02 290);
+  --pop: oklch(0.72 0.27 305);
+  --pop-soft: oklch(0.55 0.22 295);
+  --muted-foreground: oklch(0.7 0.02 290);
+  --border: oklch(1 0 0 / 8%);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: var(--pop); color: var(--background); }
+
+a { color: inherit; text-decoration: none; }
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: oklch(0.13 0.02 290 / 0.7);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.025em;
+}
+.logo span { color: var(--pop); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.nav-link {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: color 0.15s;
+  position: relative;
+}
+.nav-link:hover { color: var(--foreground); }
+
+/* Dropdown */
+.dropdown { position: relative; }
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: color 0.15s;
+}
+.dropdown-btn:hover { color: var(--foreground); }
+.dropdown-btn svg { width: 0.875rem; height: 0.875rem; transition: transform 0.2s; }
+.dropdown:hover .dropdown-btn svg { transform: rotate(180deg); }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 0.5rem;
+  width: 18rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+.dropdown:hover .dropdown-menu { opacity: 1; pointer-events: auto; }
+.dropdown-inner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  box-shadow: 0 25px 50px oklch(0 0 0 / 0.4);
+}
+.dropdown-item {
+  display: block;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: background 0.15s;
+}
+.dropdown-item:hover { background: oklch(0.72 0.27 305 / 0.1); }
+.dropdown-item:hover .dropdown-item-title { color: var(--pop); }
+.dropdown-item-title { font-size: 0.875rem; font-weight: 600; color: var(--foreground); transition: color 0.15s; }
+.dropdown-item-desc { font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.125rem; }
+
+.btn-contact {
+  background: var(--pop);
+  color: var(--primary-foreground);
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 0.15s;
+  display: inline-block;
+}
+.btn-contact:hover { transform: scale(1.03); }
+
+/* Main */
+main { padding-top: 4rem; }
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  animation: blob 14s ease-in-out infinite;
+}
+.blob-1 {
+  width: 24rem; height: 24rem;
+  top: -5rem; left: -5rem;
+  background: oklch(0.72 0.27 305 / 0.3);
+}
+.blob-2 {
+  width: 18rem; height: 18rem;
+  top: 2.5rem; right: 0;
+  background: oklch(0.55 0.22 295 / 0.3);
+  animation-delay: 4s;
+}
+.hero-inner {
+  position: relative;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: oklch(0.72 0.27 305 / 0.1);
+  border: 1px solid oklch(0.72 0.27 305 / 0.3);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pop);
+  margin-bottom: 1.5rem;
+}
+.badge svg { width: 0.75rem; height: 0.75rem; }
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 48rem;
+}
+h1 .accent { color: var(--pop); }
+.pill {
+  background: oklch(0.72 0.27 305 / 0.15);
+  border-radius: 0.5rem;
+  padding: 0.125rem 0.5rem;
+}
+.sector-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.sector-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: default;
+  transition: border-color 0.15s, color 0.15s;
+}
+.sector-tag:hover { border-color: oklch(0.72 0.27 305 / 0.6); color: var(--pop); }
+
+/* Advisory */
+.section { max-width: 80rem; margin: 0 auto; padding: 6rem 1.5rem; }
+.section-label { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pop); margin-bottom: 0.5rem; }
+h2 { font-family: var(--font-display); font-size: clamp(1.875rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.025em; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
+.all-link { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; font-weight: 500; color: var(--muted-foreground); transition: color 0.15s; }
+.all-link:hover { color: var(--pop); }
+.all-link svg { width: 1rem; height: 1rem; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.card {
+  background: var(--background);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-height: 16rem;
+  transition: background 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+.card:hover { background: var(--surface); }
+.card-top { display: flex; align-items: center; justify-content: space-between; }
+.card-icon {
+  width: 2.5rem; height: 2.5rem;
+  border-radius: 0.5rem;
+  background: oklch(0.72 0.27 305 / 0.15);
+  border: 1px solid oklch(0.72 0.27 305 / 0.3);
+  display: grid;
+  place-items: center;
+  color: var(--pop);
+}
+.card-icon svg { width: 1.25rem; height: 1.25rem; }
+.card-arrow { width: 1.25rem; height: 1.25rem; color: var(--muted-foreground); transition: color 0.15s, transform 0.15s; }
+.card:hover .card-arrow { color: var(--pop); transform: translate(2px, -2px); }
+.card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
+.card p { font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; }
+.card-img { position: relative; overflow: hidden; min-height: 16rem; background: var(--background); }
+.card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+.card-img-ring { position: absolute; inset: 0.25rem; border-radius: 0.75rem; border: 1px solid oklch(1 0 0 / 0.1); }
+
+/* Marquee */
+.marquee-section { overflow: hidden; padding: 3rem 0; border-bottom: 1px solid var(--border); }
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  animation: marquee 30s linear infinite;
+}
+.marquee-chunk { display: flex; gap: 3rem; align-items: center; flex-shrink: 0; }
+.marquee-text { color: oklch(0.98 0.005 290 / 0.1); }
+.marquee-dot { color: var(--pop); }
+
+/* CTA */
+.cta-box {
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, var(--pop), var(--pop-soft));
+  padding: 2.5rem 4rem;
+  color: var(--primary-foreground);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.cta-label { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 0.75rem; }
+.cta-box h2 { font-family: var(--font-display); font-size: clamp(1.875rem, 3vw, 3rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; max-width: 32rem; color: var(--primary-foreground); }
+.cta-box p { margin-top: 1rem; max-width: 28rem; opacity: 0.8; }
+.btn-hello {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-hello:hover { transform: scale(1.03); }
+.btn-hello svg { width: 1rem; height: 1rem; }
+
+/* Footer */
+footer { border-top: 1px solid var(--border); margin-top: 8rem; }
+.footer-inner { max-width: 80rem; margin: 0 auto; padding: 4rem 1.5rem; display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
+.footer-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.875rem; letter-spacing: -0.025em; }
+.footer-logo span { color: var(--pop); }
+.footer-nav-label { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pop); margin-bottom: 0.75rem; }
+.footer-nav { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; }
+.footer-nav a { transition: color 0.15s; color: inherit; }
+.footer-nav a:hover { color: var(--pop); }
+.footer-bottom { border-top: 1px solid var(--border); }
+.footer-bottom-inner { max-width: 80rem; margin: 0 auto; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
+
+/* Animations */
+@keyframes blob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-40px) scale(1.1); }
+  66% { transform: translate(-20px,30px) scale(0.95); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .card-grid { grid-template-columns: 1fr; }
+  .card-img { display: none; }
+  .cta-box { padding: 2rem; flex-direction: column; align-items: flex-start; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .all-link { display: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#home">
-    <div class="nav-logo-inner">
-      <span class="nav-logo-main">MADISCO</span>
-      <div class="nav-logo-rule"></div>
-      <span class="nav-logo-sub">Ventures</span>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#investments">Investments</a></li>
-    <li class="dropdown">
-      <a href="#advisory">Advisory &#9662;</a>
-      <div class="dropdown-menu">
-        <a href="#advisory">GTM &amp; Revenue Advisory</a>
-        <a href="#advisory">IT Infrastructure &amp; Security Advisory</a>
-        <a href="#advisory">Operational AI Advisory</a>
+  <div class="nav-inner">
+    <a href="/" class="logo">Madisco<span>.</span></a>
+    <div class="nav-links">
+      <div class="dropdown">
+        <button class="dropdown-btn">
+          Portfolio
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-menu">
+          <div class="dropdown-inner">
+            <a href="/portfolio" class="dropdown-item">
+              <div class="dropdown-item-title">All Holdings</div>
+              <div class="dropdown-item-desc">Pre-Series A bets across sectors</div>
+            </a>
+            <a href="/portfolio#tech" class="dropdown-item">
+              <div class="dropdown-item-title">Tech & Data</div>
+              <div class="dropdown-item-desc">Infra, AI, dev tools</div>
+            </a>
+          </div>
+        </div>
       </div>
-    </li>
-    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
-  </ul>
+      <div class="dropdown">
+        <button class="dropdown-btn">
+          Advisory
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-menu">
+          <div class="dropdown-inner">
+            <a href="/advisory/technology" class="dropdown-item">
+              <div class="dropdown-item-title">Technology</div>
+              <div class="dropdown-item-desc">Cyber, architecture, AI deployment</div>
+            </a>
+            <a href="/advisory/media" class="dropdown-item">
+              <div class="dropdown-item-title">Media</div>
+              <div class="dropdown-item-desc">Media planning, programmatic, agentic</div>
+            </a>
+            <a href="/advisory/revenue" class="dropdown-item">
+              <div class="dropdown-item-title">Revenue</div>
+              <div class="dropdown-item-desc">GTM, sales eng, rev ops</div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/contact" class="btn-contact">Contact</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="home">
-  <div class="hero-logo-pill">
-    <span class="hero-logo-main">MADISCO</span>
-    <div class="hero-logo-rule"></div>
-    <span class="hero-logo-sub">Ventures</span>
-  </div>
-  <p class="hero-eyebrow">San Francisco &nbsp;·&nbsp; Global Reach</p>
-  <h1 class="hero-title">Building What<br><em>Comes Next</em></h1>
-  <p class="hero-sub">Early-stage capital and senior advisory for founders and operators at the edge of what's possible.</p>
-  <div class="hero-actions">
-    <a href="#investments" class="btn-primary">Our Portfolio</a>
-    <a href="#advisory" class="btn-outline">Advisory Services</a>
-  </div>
-</section>
-
-<!-- INVESTMENTS -->
-<section id="investments">
-  <div class="section-header fade-up">
-    <p class="section-eyebrow">Capital &amp; Conviction</p>
-    <div class="section-divider"></div>
-    <h2 class="section-title">We Back <em>Builders</em></h2>
-    <p class="section-body">Madisco Ventures invests at the earliest stages in founders reimagining advertising, data, AI, and the infrastructure layer beneath it all.</p>
-  </div>
-
-  <div class="pillars fade-up">
-    <div class="pillar-card">
-      <div class="pillar-icon">◈</div>
-      <p class="pillar-label">Focus</p>
-      <h3 class="pillar-title">Adtech &amp; Media</h3>
-      <p class="pillar-desc">Deep conviction in the next generation of advertising infrastructure, programmatic, CTV, and data marketplaces.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">⬡</div>
-      <p class="pillar-label">Focus</p>
-      <h3 class="pillar-title">AI-Native Platforms</h3>
-      <p class="pillar-desc">Backing companies that build AI into the foundation — from identity resolution to workflow automation.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">◎</div>
-      <p class="pillar-label">Focus</p>
-      <h3 class="pillar-title">Fintech &amp; Infra</h3>
-      <p class="pillar-desc">Selective bets on the financial and security infrastructure enabling the next wave of digital commerce and data trust.</p>
-    </div>
-  </div>
-
-  <div class="portfolio-table-wrap fade-up">
-    <div class="portfolio-table-header">
-      <h3>Selected Portfolio</h3>
-      <span>Active Investments</span>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>Sector</th>
-          <th>Stage</th>
-          <th>Focus</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="company-name">swym.ai</span></td>
-          <td><span class="sector-badge">AI / Adtech</span></td>
-          <td><span class="stage-dot">Seed</span></td>
-          <td>AI-native retail media intelligence</td>
-        </tr>
-        <tr>
-          <td><span class="company-name">Smart Spend Advertising</span></td>
-          <td><span class="sector-badge">Adtech</span></td>
-          <td><span class="stage-dot">Growth</span></td>
-          <td>Performance media &amp; programmatic</td>
-        </tr>
-        <tr>
-          <td><span class="company-name">Portfolio Co.</span></td>
-          <td><span class="sector-badge">Fintech</span></td>
-          <td><span class="stage-dot">Pre-Seed</span></td>
-          <td>Financial data infrastructure</td>
-        </tr>
-        <tr>
-          <td><span class="company-name">Portfolio Co.</span></td>
-          <td><span class="sector-badge">Enterprise SaaS</span></td>
-          <td><span class="stage-dot">Seed</span></td>
-          <td>Workflow automation &amp; AI tooling</td>
-        </tr>
-        <tr>
-          <td><span class="company-name">Portfolio Co.</span></td>
-          <td><span class="sector-badge">Climate Tech</span></td>
-          <td><span class="stage-dot">Pre-Seed</span></td>
-          <td>Sustainable supply chain visibility</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ADVISORY -->
-<section id="advisory">
-  <div class="section-header fade-up">
-    <p class="section-eyebrow">Advisory Services</p>
-    <div class="section-divider"></div>
-    <h2 class="section-title">Operator-Led<br><em>Expertise</em></h2>
-    <p class="section-body">Madisco Ventures advisory is not consultancy in the traditional sense. We embed senior operators with genuine domain authority to solve problems that matter.</p>
-  </div>
-
-  <div class="advisory-grid fade-up">
-    <div class="advisory-card">
-      <div class="advisory-number">01</div>
-      <p class="advisory-practice">Practice Area</p>
-      <h3 class="advisory-title">GTM &amp; Revenue Advisory</h3>
-      <p class="advisory-desc">Our founder spent over two decades building startups into global leaders across media, data, social, adtech, martech, and AI-integrated solutions. That experience — from zero to scale — is what we bring to your go-to-market challenges. Whether you're an adtech company entering new markets, a media business reimagining your revenue model, or a direct brand bringing programmatic in-house, we've sat in every seat at that table.</p>
-      <div class="advisory-tags">
-        <span class="tag">GTM Strategy</span>
-        <span class="tag">Revenue Architecture</span>
-        <span class="tag">Programmatic</span>
-        <span class="tag">Agency Partnerships</span>
-        <span class="tag">CTV</span>
-        <span class="tag">Data Marketplaces</span>
+<main>
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="hero-inner">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+        Fractional CRO, CISO, CTO, and GTM Revenue Systems Architecture
+      </div>
+      <h1>
+        We write early checks and roll up our sleeves —
+        <span class="accent"> <span class="pill">Investment</span> and <span class="pill">Advisory</span> from exited operators</span>
+      </h1>
+      <div class="sector-tags">
+        <span class="sector-tag">Tech</span>
+        <span class="sector-tag">Data</span>
+        <span class="sector-tag">AI</span>
+        <span class="sector-tag">Cyber</span>
+        <span class="sector-tag">GTM</span>
       </div>
     </div>
+  </section>
 
-    <div class="advisory-card">
-      <div class="advisory-number">02</div>
-      <p class="advisory-practice">Practice Area</p>
-      <h3 class="advisory-title">IT Infrastructure &amp; Security Advisory</h3>
-      <p class="advisory-desc">Led by our technology practice lead — a specialist with a degree in artificial intelligence and computational linguistics and a 25-year career spanning financial services and information architecture. With a sharp focus on security architecture and vulnerability detection, our technology advisory helps organizations build resilient, defensible infrastructure that can support rapid growth without compromise.</p>
-      <div class="advisory-tags">
-        <span class="tag">Security Architecture</span>
-        <span class="tag">Vulnerability Detection</span>
-        <span class="tag">Cisco Certified</span>
-        <span class="tag">Microsoft Certified</span>
-        <span class="tag">AI Systems</span>
-        <span class="tag">InfoSec</span>
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label">01 — Advisory</div>
+        <h2>Operators on tap.</h2>
       </div>
+      <a href="/advisory/technology" class="all-link">
+        All services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
     </div>
-
-    <div class="advisory-card">
-      <div class="advisory-number">03</div>
-      <p class="advisory-practice">Practice Area</p>
-      <h3 class="advisory-title">Operational AI Advisory</h3>
-      <p class="advisory-desc">We build and deploy personalised AI tools that automate the specific frustrations slowing your business down — fast, practical, and built to scale. From workflow automation and process mapping to AI tool implementation, we set you up on a solid AI-centric foundation and then stay to deliver hands-on, experiential training so you and your team can keep building on it long after we're done.</p>
-      <div class="advisory-tags">
-        <span class="tag">Workflow Automation</span>
-        <span class="tag">Process Mapping</span>
-        <span class="tag">AI Tool Implementation</span>
-        <span class="tag">Hands-On Training</span>
-        <span class="tag">Custom AI Tooling</span>
+    <div class="card-grid">
+      <a href="/advisory/technology" class="card">
+        <div class="card-top">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>
+          </div>
+          <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </div>
+        <h3>Technology</h3>
+        <p>Enterprise systems architecture, cyber security, and AI deployment that survives scale.</p>
+      </a>
+      <a href="/advisory/revenue" class="card">
+        <div class="card-top">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+          </div>
+          <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </div>
+        <h3>Revenue</h3>
+        <p>GTM design, sales engineering, and revenue operations that compound.</p>
+      </a>
+      <div class="card-img">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,oklch(0.18 0.03 290),oklch(0.13 0.02 290));display:flex;align-items:center;justify-content:center;">
+          <svg style="width:4rem;height:4rem;opacity:0.15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="card-img-ring"></div>
       </div>
     </div>
   </div>
 
-  <div class="team-strip fade-up">
-    <div class="team-card">
-      <p class="team-role">Founder &amp; Managing Partner</p>
-      <h3 class="team-name">Commercial &amp; GTM Practice</h3>
-      <p class="team-bio">Over 20 years building revenue organizations and GTM functions at the intersection of media, data, and technology. A proven operator known for building businesses and teams from the ground up and taking them global. Focused on adtech, programmatic, CTV, agency partnerships, and AI-native commercial strategy.</p>
-    </div>
-    <div class="team-card">
-      <p class="team-role">Technology Practice Lead</p>
-      <h3 class="team-name">Infrastructure &amp; Security Practice</h3>
-      <p class="team-bio">25 years in information architecture and financial technology, with deep specialization in security engineering, vulnerability detection, and AI systems design. Holds advanced certifications in network and cloud infrastructure and has built and hardened technology organizations across regulated industries.</p>
-      <div class="cert-row">
-        <span class="cert">Cisco Certified</span>
-        <span class="cert">Microsoft Certified</span>
-        <span class="cert">AI &amp; Comp. Linguistics</span>
+  <section class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-chunk">
+        <span class="marquee-text">Pre-Series A</span>
+        <span class="marquee-dot">✦</span>
+        <span class="marquee-text">Tech · Data · AI</span>
+        <span class="marquee-dot">✦</span>
+        <span class="marquee-text">Hands-on operators</span>
+        <span class="marquee-dot">✦</span>
+      </div>
+      <div class="marquee-chunk">
+        <span class="marquee-text">Pre-Series A</span>
+        <span class="marquee-dot">✦</span>
+        <span class="marquee-text">Tech · Data · AI</span>
+        <span class="marquee-dot">✦</span>
+        <span class="marquee-text">Hands-on operators</span>
+        <span class="marquee-dot">✦</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-header fade-up">
-    <p class="section-eyebrow">Work With Us</p>
-    <div class="section-divider"></div>
-    <h2 class="section-title">Get <em>in Touch</em></h2>
-    <p class="section-body">Whether you're building something worth backing or looking for experienced operators to help you move faster, we'd like to hear from you.</p>
-  </div>
-
-  <div class="contact-form fade-up">
-    <div class="form-row">
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" placeholder="Your name">
+  <div class="section">
+    <div class="cta-box">
+      <div>
+        <div class="cta-label">03 — Get in touch</div>
+        <h2>Building something interesting?</h2>
+        <p>We read every note. Tell us about you, the team, and what you're working on.</p>
       </div>
-      <div class="form-group">
-        <label>Company</label>
-        <input type="text" placeholder="Company or fund name">
-      </div>
+      <a href="/contact" class="btn-hello">
+        Say hello
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
     </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" placeholder="you@company.com">
-    </div>
-    <div class="form-group">
-      <label>What are you looking for?</label>
-      <textarea rows="4" placeholder="Tell us briefly what brings you here..."></textarea>
-    </div>
-    <div class="checkbox-group">
-      <label class="checkbox-label">
-        <input type="checkbox">
-        I am a founder seeking investment for my business
-      </label>
-      <label class="checkbox-label">
-        <input type="checkbox">
-        I am interested in Madisco advisory services
-      </label>
-    </div>
-    <button class="form-submit" onclick="sendMsg()">Send Message</button>
   </div>
-</section>
+</main>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo-pill">
-    <span class="footer-logo-main">MADISCO</span>
-    <div class="footer-logo-rule"></div>
-    <span class="footer-logo-sub">Ventures</span>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Madisco<span>.</span></div>
+    </div>
+    <div>
+      <div class="footer-nav-label">Explore</div>
+      <ul class="footer-nav">
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/advisory/technology">Advisory</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
   </div>
-  <p>San Francisco, CA &nbsp;·&nbsp; &copy; 2026 Madisco Ventures</p>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span>© 2026 Madisco Ventures</span>
+      <span>Made in SF</span>
+    </div>
+  </div>
 </footer>
-
-<script>
-function sendMsg() {
-  const u = 'rache';
-  const d = 'madisco.vc';
-  window.location.href = 'mailto:' + u + '@' + d;
-}
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
-  });
-});
-</script>
 
 </body>
 </html>
